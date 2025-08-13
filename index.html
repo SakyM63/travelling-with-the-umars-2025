@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travelling with the Umars</title>
+    <!-- Use Tailwind CSS for a clean and stylish design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lora', serif;
+            background-color: #F5EFE1; /* Soft cream background */
+            color: #4A4A4A; /* Dark gray text for readability */
+        }
+        .container-section {
+            background-color: #FFFFFF;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .hero-section {
+            background-image: url('https://placehold.co/1200x600/C75918/F5EFE1?text=Map+of+Spain+and+Morocco');
+            background-size: cover;
+            background-position: center;
+            min-height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .itinerary-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .itinerary-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-[#F5EFE1] text-[#4A4A4A]">
+    <!-- Main content container -->
+    <div class="max-w-4xl mx-auto p-4 md:p-8">
+        <!-- Hero Section with Background Image -->
+        <section class="hero-section rounded-xl mb-8 overflow-hidden">
+            <div class="hero-overlay text-white">
+                <h1 class="text-4xl md:text-6xl font-['Playfair_Display'] font-bold mb-2">Travelling with the Umars</h1>
+                <p class="text-lg md:text-xl font-['Lora'] font-medium">A Umar-velous 2025 Journey</p>
+            </div>
+        </section>
+
+        <!-- Part 1: Spain Section -->
+        <section class="rounded-xl p-6 md:p-8 mb-8 bg-[#FDFCF9]">
+            <h2 class="text-3xl font-['Playfair_Display'] font-bold text-[#C75918] mb-6 border-b-2 pb-2 border-[#D8C7B0]">Part 1: Spain</h2>
+
+            <!-- Seville Section -->
+            <div id="seville" class="mb-8">
+                <h3 class="text-2xl font-['Playfair_Display'] font-semibold text-[#5C4033] mb-4">Seville: A Grand Andalusian Welcome</h3>
+                
+                <!-- Day 1 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 1</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Friday, September 26 | Departure from Vancouver</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>Departure from Vancouver (YVR) on Air Canada flight AC 302 at 7:40 AM, arriving in Montreal (YUL) at 3:35 PM.</li>
+                        <li>Departure from Montreal (YUL) on Air Canada flight AC 9634 at 6:05 PM, arriving in Frankfurt (FRA) at 7:10 AM the next day.</li>
+                    </ul>
+                    <button onclick="showModal('Day 1')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+
+                <!-- Day 2 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 2</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Saturday, September 27 | Arrival in Seville</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>Departure from Frankfurt (FRA) on Air Canada flight AC 9158 at 8:35 AM, arriving in Seville (SVQ) at 11:30 AM.</li>
+                        <li>Transfer from the airport to accommodation.</li>
+                        <li>In the afternoon, settling in and exploring begins with a stroll through the Plaza de España.</li>
+                        <li>The evening includes enjoying a sunset at the Metropol Parasol and having dinner with tapas in the historic Barrio Santa Cruz.</li>
+                    </ul>
+                    <button onclick="showModal('Day 2')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+
+                <!-- Day 3 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 3</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Sunday, September 28 | Seville</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>Checking into Hotel Fernando III, for a stay from Sunday, September 28, to Tuesday, September 30.</li>
+                        <li>The morning is for visiting the Royal Alcázar of Seville.</li>
+                        <li>In the afternoon, exploring the Seville Cathedral and climbing the Giralda Tower for panoramic city views.</li>
+                        <li>The evening features a traditional flamenco show.</li>
+                    </ul>
+                    <button onclick="showModal('Day 3')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+
+                <!-- Day 4 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 4</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Monday, September 29 | Seville</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>A full day to explore more of Seville.</li>
+                        <li>Considerations include visiting the Museo de Bellas Artes or the vibrant Triana neighborhood across the river.</li>
+                        <li>Taking a tapas tour or a cooking class is also an option.</li>
+                        <li>The evening concludes with a final dinner in Seville.</li>
+                    </ul>
+                    <button onclick="showModal('Day 4')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+
+                <!-- Day 5 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 5</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Tuesday, September 30 | Seville to Granada</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>In the morning, taking the Renfe AVE train departing Seville-Santa Justa at 10:30 AM to Granada.</li>
+                        <li>The journey is about 2.5-3 hours.</li>
+                        <li>In the afternoon, checking into the Alhambra Palace Hotel in Granada for a stay from Tuesday, September 30, to Thursday, October 2.</li>
+                        <li>Exploring the picturesque Albaicín, the old Arab quarter, once settled.</li>
+                        <li>The evening is for dinner at a restaurant in the Albaicín.</li>
+                    </ul>
+                    <button onclick="showModal('Day 5')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+            </div>
+
+            <!-- Granada Section -->
+            <div id="granada" class="mb-8">
+                <h3 class="text-2xl font-['Playfair_Display'] font-semibold text-[#5C4033] mb-4">Granada: Moorish Majesty</h3>
+                
+                <!-- Day 6 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 6</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Wednesday, October 1 | Granada</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>A full day to visit the Alhambra, the most famous landmark in Granada.</li>
+                        <li>Tickets should be booked well in advance, as they sell out quickly.</li>
+                        <li>A full day is needed to explore the Nasrid Palaces, Generalife Gardens, and the Alcazaba fortress.</li>
+                        <li>The evening can be spent relaxing and enjoying local tapas in the city center.</li>
+                    </ul>
+                    <button onclick="showModal('Day 6')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+                
+                <!-- Day 7 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 7</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Thursday, October 2 | Granada</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>Checking out of the Alhambra Palace Hotel and checking into the Parador de Granada for a one-night stay, including breakfast.</li>
+                        <li>In the morning, visiting the Granada Cathedral and the adjacent Royal Chapel, the final resting place of Queen Isabella I and King Ferdinand II.</li>
+                        <li>The afternoon is for exploring the Corral del Carbón and the bustling Alcaicería.</li>
+                        <li>In the evening, considering a visit to a "teteria" (tea house) for a traditional Moroccan tea experience.</li>
+                    </ul>
+                    <button onclick="showModal('Day 7')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+                
+                <!-- Day 8 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 8</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Friday, October 3 | Granada to Cordoba</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>Checking out of the Parador de Granada.</li>
+                        <li>Checking into the Parador de Córdoba for a stay from October 3 to October 6, including breakfast.</li>
+                        <li>Travel by Renfe AVE train departing Granada at 3:06 PM to Cordoba.</li>
+                        <li>The journey is typically about 1.5-2 hours.</li>
+                        <li>After checking in, exploration begins with a visit to the Mezquita-Cathedral.</li>
+                        <li>The evening is for wandering through the charming Jewish Quarter (Judería).</li>
+                    </ul>
+                    <button onclick="showModal('Day 8')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cordoba Section -->
+            <div id="cordoba" class="mb-8">
+                <h3 class="text-2xl font-['Playfair_Display'] font-semibold text-[#5C4033] mb-4">Cordoba: A Fusion of Cultures</h3>
+                
+                <!-- Day 9 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 9</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Saturday, October 4 | Cordoba</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>In the morning, visiting the Alcázar of the Christian Monarchs.</li>
+                        <li>The afternoon is for a guided tour of the famous Patios de Córdoba.</li>
+                        <li>In the evening, enjoying a relaxing dinner and another flamenco show.</li>
+                    </ul>
+                    <button onclick="showModal('Day 9')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+                
+                <!-- Day 10 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 10</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Sunday, October 5 | Cordoba</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>A trip to the ruins of Medina Azahara, a 10th-century medieval Muslim city, is planned for the morning.</li>
+                        <li>The afternoon is for indulging in relaxation at a traditional Hammam, such as Hammam Al Andalus.</li>
+                        <li>The final night in Spain will be enjoyed with a farewell dinner.</li>
+                    </ul>
+                    <button onclick="showModal('Day 10')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+                
+                <!-- Day 11 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 11</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Monday, October 6 | Travel from Spain to Marrakesh</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>Checking out of the Parador de Córdoba.</li>
+                        <li>Enjoying a final breakfast in Cordoba.</li>
+                        <li>In the afternoon, taking the Renfe train departing Cordoba at 5:49 PM to Seville-Santa Justa.</li>
+                        <li>In the evening, transferring to San Pablo Airport (SVQ) for a flight to Marrakesh.</li>
+                        <li>Departure from Seville on Ryanair flight FR4008 at 9:55 PM, arriving in Marrakesh (RAK) at 10:20 PM.</li>
+                        <li>Transfer to the hotel.</li>
+                    </ul>
+                    <button onclick="showModal('Day 11')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Part 2: Morocco Section -->
+        <section class="rounded-xl p-6 md:p-8 mb-8 bg-[#FDFCF9]">
+            <h2 class="text-3xl font-['Playfair_Display'] font-bold text-[#C75918] mb-6 border-b-2 pb-2 border-[#D8C7B0]">Part 2: Morocco</h2>
+
+            <!-- Marrakesh Section -->
+            <div id="marrakesh" class="mb-8">
+                <h3 class="text-2xl font-['Playfair_Display'] font-semibold text-[#5C4033] mb-4">Marrakesh: The Red City</h3>
+                
+                <!-- Day 12 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 12</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Tuesday, October 7 | Marrakesh</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>Checking into Savoy Le Grand Hotel Marrakech.</li>
+                        <li>In the morning, exploring the famous Majorelle Garden.</li>
+                        <li>The afternoon is for visiting the Yves Saint Laurent Museum, located nearby.</li>
+                        <li>The evening includes a sunset camel ride in the Agafay Desert with a traditional Berber dinner and show.</li>
+                    </ul>
+                    <button onclick="showModal('Day 12')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+                
+                <!-- Day 13 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 13</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Wednesday, October 8 | Marrakesh</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>In the morning, getting lost in the maze-like streets of the Marrakesh Medina and visiting the Bahia Palace.</li>
+                        <li>The afternoon is for haggling for souvenirs and spices in the bustling souks of the Medina.</li>
+                        <li>In the evening, heading back to Jemaa el-Fnaa square to see food stalls, snake charmers, and street performers.</li>
+                    </ul>
+                    <button onclick="showModal('Day 13')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+                
+                <!-- Day 14 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 14</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Thursday, October 9 | Marrakesh</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>Another day to be enjoyed in Marrakesh.</li>
+                        <li>Options include a day trip to the Ouzoud Waterfalls or the Ourika Valley, or spending more time exploring the city's hidden gems.</li>
+                        <li>The evening concludes with a final meal in Marrakesh.</li>
+                    </ul>
+                    <button onclick="showModal('Day 14')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+                
+                <!-- Day 15 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 15</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Friday, October 10 | Marrakesh to Fez</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>Checking out of the Savoy Le Grand Hotel Marrakech.</li>
+                        <li>Departure from Marrakesh (RAK) on Ryanair flight FR6731 at 11:45 AM, arriving in Fez (FEZ) at 12:45 PM.</li>
+                        <li>After arriving in Fez, transferring to accommodation.</li>
+                        <li>Checking into a Deluxe Suite at Riad Maison Bleue & Spa.</li>
+                        <li>In the evening, exploring the Fez el-Bali and finding a traditional Moroccan restaurant for dinner.</li>
+                    </ul>
+                    <button onclick="showModal('Day 15')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+            </div>
+
+            <!-- Fez Section -->
+            <div id="fez" class="mb-8">
+                <h3 class="text-2xl font-['Playfair_Display'] font-semibold text-[#5C4033] mb-4">Fez: The Imperial City</h3>
+                
+                <!-- Day 16 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 16</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Saturday, October 11 | Fez</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>In the morning, taking a guided tour of the Fez el-Bali, a UNESCO World Heritage site and one of the largest car-free urban areas in the world.</li>
+                        <li>The afternoon is for visiting the iconic Chouara Tannery.</li>
+                        <li>The evening includes a stroll through the Henna Souk and other artisan quarters.</li>
+                    </ul>
+                    <button onclick="showModal('Day 16')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+                
+                <!-- Day 17 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 17</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Sunday, October 12 | Fez</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>The morning is for visiting the Al Attarine Madrasa.</li>
+                        <li>The afternoon can be spent relaxing, shopping for last-minute souvenirs, or visiting the impressive Bab Bou Jeloud (the Blue Gate).</li>
+                        <li>In the evening, a final night in Fez will be savored with a delicious Moroccan feast.</li>
+                    </ul>
+                    <button onclick="showModal('Day 17')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+                
+                <!-- Day 18 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 18</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Monday, October 13 | Fez to Casablanca</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>Checking out of Riad Maison Bleue.</li>
+                        <li>Travel by high-speed train from Fez to Casablanca, a journey of approximately 3.5-4 hours.</li>
+                        <li>Checking into the Hyatt Regency Casablanca.</li>
+                        <li>In the evening, a stroll along the La Corniche waterfront promenade and finding a place to eat with a view of the Atlantic Ocean.</li>
+                    </ul>
+                    <button onclick="showModal('Day 18')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+            </div>
+
+            <!-- Casablanca Section -->
+            <div id="casablanca" class="mb-8">
+                <h3 class="text-2xl font-['Playfair_Display'] font-semibold text-[#5C4033] mb-4">Casablanca: The Modern Metropolis</h3>
+                
+                <!-- Day 19 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 19</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Tuesday, October 14 | Casablanca</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>In the morning, visiting the majestic Hassan II Mosque.</li>
+                        <li>The afternoon is for exploring the Old Medina and the Habous Quarter, also known as the New Medina.</li>
+                        <li>In the evening, enjoying a farewell dinner in Casablanca before departure.</li>
+                    </ul>
+                    <button onclick="showModal('Day 19')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+                
+                <!-- Day 20 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 20</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Wednesday, October 15 | Departure from Casablanca</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>Checking out of the Hyatt Regency Casablanca.</li>
+                        <li>Depending on flight time, a visit to the Cathédrale Sacré Cœur may be possible.</li>
+                        <li>Transfer to Mohammed V International Airport (CMN) for a flight home to Vancouver (YVR).</li>
+                        <li>Departure from Casablanca (CMN) on Air Canada flight AC 9430 at 1:25 AM, arriving in Frankfurt (FRA) at 5:50 AM.</li>
+                        <li>Departure from Frankfurt (FRA) on Air Canada flight AC 9101 at 1:20 PM, arriving in Vancouver (YVR) at 2:20 PM.</li>
+                    </ul>
+                    <button onclick="showModal('Day 20')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+                
+                <!-- Day 21 Itinerary -->
+                <div class="itinerary-card mb-6 bg-[#EFEAE4] p-4 rounded-lg shadow-sm">
+                    <h4 class="text-2xl font-['Playfair_Display'] font-bold text-[#4A4A4A]">Day 21</h4>
+                    <p class="text-sm font-medium text-[#C75918]">Thursday, October 16 | Arrival in Vancouver</p>
+                    <ul class="list-disc list-inside space-y-1 text-[#6B7280] mt-2">
+                        <li>Arrival back in Vancouver, concluding the journey through Spain and Morocco.</li>
+                    </ul>
+                    <button onclick="showModal('Day 21')" class="mt-4 px-6 py-3 bg-[#C75918] text-white font-semibold rounded-full shadow-lg hover:bg-opacity-80 focus:outline-none focus:ring-2 focus:ring-[#C75918] focus:ring-opacity-50 transition-colors duration-200">
+                        Upload Photos and Comments
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- The Modal/Message Box -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <p id="modalMessage" class="text-lg font-semibold text-[#4A4A4A]">Thank you for your feedback!</p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for the modal/message box
+        const modal = document.getElementById("myModal");
+        const modalMessage = document.getElementById("modalMessage");
+
+        function showModal(day) {
+            modalMessage.innerText = `Feature to upload photos and comments for ${day} is under development.`;
+            modal.style.display = "flex";
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        // Close the modal if the user clicks outside of it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
